@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title> Home </title>
+</head>
+<body>
+    
+
+    <img src="{% static 'images/bg.png' %}" alt="" class="bg">
+
+    <form id="form-data" enctype="multipart/form-data" style="display: none;">
+        <input type="text" class="components_list">
+    </form>
+
+    <div class="cont">
+        
+        <div class="loading-overlay">
+            
+                <p>... جاري التجهيز</p>
+
+                <footer>
+                    <p>تم الانشاء و التطوير بواسطة رضوان جابر حجازي</p>
+                </footer>
+                
+        </div>
+
+
+        
+        <div class="left">
+
+
+            <div class="add-text-overlayer">
+                <input type="text" id="add-text-value" placeholder="ادخل النص">
+                <div class="btns">
+                    <button id="add-text" class="btn">اضافة</button>
+                    <button id="cancel-text" class="btn">الغاء</button>
+                </div>
+            </div>
+
+
+            <div class="btns">
+                
+                <div class="in">
+                    <p>الخلفية</p>
+                    <input type="color" id="bg-color">
+                </div>
+                
+                <input type="file" hidden id="choose-img">
+                <button id="add-img-btn" class="btn">إضافة صورة</button>
+                <button id="add-text-btn" class="btn">إضافة نص</button>
+
+            </div>
+
+            
+
+            <div class="controler-section">
+
+                <div class="options">
+
+                    <div class="font-options">
+                        <input type="number" value="20" placeholder="حجم الخط" id="change_font_size">
+                        <input type="color" placeholder="اللون" id="change_font_color">
+                    </div>
+                    
+                    <div class="img-options">
+                        <input type="number" placeholder="اتساع الصورة" id="img-width">
+                        <input type="number" placeholder="ارتفاع الصورة" id="img-height">
+                    </div>
+
+
+                </div>
+
+                
+                <div class="controler">
+
+                    <div id="mov-up" class="up"></div>
+                    <div id="mov-down" class="down"></div>
+                    <div id="mov-left" class="left"></div>
+                    <div id="mov-right" class="right"></div>
+                    <div id="mov-done" class="done"></div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="component-list">
+                
+                <!-- <div>
+                    <p>Name of Component here</p>
+                    <div class="more">
+                        <button id="control"></button>
+                        <button id="remove"></button>
+                    </div>
+                </div> -->
+                
+
+
+            </div>
+
+        </div>
+
+        
+        
+        
+        
+        <div class="right">
+            
+            <div class="board" id="board"></div>
+            
+            <div class="btns">
+                <button id="reset" class="btn reset">اعادة تعيين</button>
+                <button class="btn download" id="download-thumbnail" >تنزيل</button>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+
+    var loading = document.querySelector('.loading-overlay');
+
+    document.querySelector('#download-thumbnail').addEventListener('click',()=>{
+        
+        var form = new FormData()
+        form.append('component_list',JSON.stringify(component_list))
+        loading.classList.add('view')
+        
+        imgs.forEach(item=>{
+            form.append('img',item.img)
+        })
+
+        $.ajax({
+            url:"{% url 'upload' %}",
+            type:"POST",
+            data:form,
+            contentType:false,
+            processData:false,
+            cache:false,
+            success:function(url){
+                var download_src = `${window.location.protocol}//${window.location.host}/${url}`;
+                
+                var a = document.createElement('a');
+                a.href = download_src;
+                a.setAttribute('download',true)
+                a.click()
+                
+                loading.classList.remove('view')
+            }
+        })
+        
+
+    })
+
+</script>
+
+</body>
+</html>

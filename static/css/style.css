@@ -1,0 +1,392 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.btn {
+    font-family: "Cairo",sans-serif;
+    padding: 1.3rem 1.9rem;
+    border: none;
+    outline: none;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+img.bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+
+.cont {
+    position: relative;
+    width: 70%;
+    height: 75%;
+    border-radius: 88px;
+    background-color: #FFFFFF10;
+    backdrop-filter: blur(42px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 3rem 5rem;
+    gap: 10px;
+}
+
+.cont > div {
+    flex: 1;
+    height: 100%;
+    position: relative;
+}
+
+
+
+/* 
+main widht : 1280 -> / 4 > 320 
+main height : 720 -> / 4 > 180
+
+[NOTE] wotch out when rendering these size in python code
+
+*/
+
+.cont .right .board {
+    width: 320px;
+    height: 180px;
+    background-color: #fff;
+    position: relative;;
+    box-shadow: 0px 1px 12px #FFFFFF90;
+    overflow: hidden;
+}
+
+.cont .right .board::after {
+    content:"";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    background-color: transparent;
+    cursor: not-allowed;
+}
+
+
+
+.board p, .board img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.board img {
+    width: 50px;
+    height: 100px;
+}
+
+.board p{
+    font-size: 20px;
+}
+
+.cont .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btns {
+    width: 320px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.btns * {
+    flex: 1;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+.cont .right .btns .download {
+    background-color: #5EE167;
+    cursor: pointer;
+}
+
+.cont .right .btns .reset {
+    background-color: #4980DE;
+}
+
+
+
+.cont .left .btns {
+    width: 100%;
+    height: 50px;
+    flex-direction: row-reverse;
+}
+
+.cont .left .btns button {
+    background-color: #6244E2;
+    width: 40px;
+
+}
+
+.left .btns .in {
+    display: flex;
+    flex-direction: column;
+    direction: rtl;
+    font-family: "Cairo",sans-serif;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+}
+
+
+
+.add-text-overlayer {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 160px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 1rem 2rem;
+    gap: 10px;
+    z-index: 10;
+}
+
+.add-text-overlayer.view {
+    display: flex;
+}
+
+.add-text-overlayer input {
+    width: 100%;
+    direction: rtl;
+    height: 45px;
+    padding: 6px 12px;
+    border: none;
+    outline: none;
+    font-family: "Cairo",sans-serif;
+    background-color: #00000030;
+}
+
+
+.btns #add-text{
+    background-color: #5EE167;
+}
+
+.btns #cancel-text {
+    background-color: crimson;
+}
+
+
+.controler-section {
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.controler-section > div {
+    flex: 1;
+    height: 100%;
+    position: relative;
+}
+
+
+.controler div {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    /* background-color: #4980DE; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+    border-color: red green blue yellow;
+    border-width: 15px;
+    border-style: solid;
+}
+
+.controler .done {
+    background-color: #5EE167;
+    border: none;
+    width: 25px;
+    height: 25px;
+}
+
+.controler .right {
+    border-color: transparent transparent transparent #4980DE;
+    left: 70%;
+}
+
+.controler .left {
+    border-color: transparent #4980DE transparent transparent;
+    left: 30%;
+}
+
+.controler .up {
+    top: 30%;
+    border-color: transparent transparent #4980DE transparent;
+
+}
+
+.controler .down {
+    top: 70%;
+    border-color: #4980DE transparent transparent  transparent;
+}
+
+.options, .options div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.options div  {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    display: none;
+}
+
+.options div input {
+    direction: rtl;
+    width: 100%;
+    height: 35px;
+    padding: 3px 9px;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    font-family: "Cairo",sans-serif;
+    background-color: #FFFFFF10;
+    color: #fff;
+}
+
+
+.options div.view {
+    display: flex;
+}
+
+
+.component-list {
+    width: 100;
+    height: 200px;
+    border-radius: 30px;
+    background-color: #FFFFFF13;
+    padding: 12px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.component-list > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #FFFFFF10;
+    border-radius: 9px;
+    height: 35px;
+}
+
+
+.component-list > div p {
+    font-family: "Cairo",sans-serif;
+    color: #fff;
+    font-weight: bold;
+}
+
+.component-list > div .more {
+    width: 60px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 4px;
+}
+
+.component-list > div .more button {
+    flex: 1;
+    height: 100%;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.more #control {
+    background-color: #5EE167;
+}
+
+.more #remove {
+    background-color: crimson;
+}
+
+
+.cont .loading-overlay {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    border-radius: 88px;
+    background-color: #fff;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-overlay.view {
+    display: flex;
+}
+
+.loading-overlay p {
+    font-size: 25px;
+    font-family: "Cairo",sans-serif;
+    font-weight: bold;
+    color: #4980DE
+}
+
+
+.loading-overlay footer {
+    position: absolute;
+    bottom: 20px;
+}
+
+.loading-overlay footer p {
+    font-size: 20px;
+    color: #666;
+}
